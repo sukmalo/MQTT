@@ -42,7 +42,7 @@ except Exception:
 client.loop_start()
 
 print('Subscribing')
-client.subscribe("lab/photo/stream" % my_id)
+client.subscribe("lab/sukmalo/photo/stream" % my_id)
 
 ser = get_connection('/dev/ttyUSB0')
 
