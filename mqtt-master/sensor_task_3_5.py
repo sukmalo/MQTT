@@ -37,14 +37,14 @@ while True:
         data = ser.read(1)
         if mn > data[0]:
             mn = data[0]
-        client.publish("lab/photo/min" % my_id, mn)
+        client.publish("lab/sukmalo/photo/min" % my_id, mn)
         if mx < data[0]:
             mx = data[0]
-        client.publish("lab/photo/max" % my_id, mx)
+        client.publish("lab/sukmalo/photo/max" % my_id, mx)
 
         print("Value: " + str(data[0]))
         print("min: " + str(mn) + ", max: " + str(mx))
-        client.publish("lab/photo/stream" % my_id, data[0])
+        client.publish("lab/sukmalo/photo/stream" % my_id, data[0])
         ser.write(bytearray([int(ord("I")), int(interval)]))
         print("Interval: " + str(interval))
         if do_calibrate:
