@@ -25,13 +25,13 @@ def on_message(client, userdata, message):
     topic = message.topic
     print(f"Received message on {topic}: {data}. min: {mn}, max: {mx}")
 
-    if topic == "lab/photo/max" % my_id:
+    if topic == "lab/sukmalo/photo/max" % my_id:
         mx = int(data)
 
-    if topic == "lab/photo/min" % my_id:
+    if topic == "lab/sukmalo/photo/min" % my_id:
         mn = int(data)
 
-    if topic == "lab/photo/stream" % my_id:
+    if topic == "lab/sukmalo/photo/stream" % my_id:
         if int(data) < (mn + mx) / 2:
             ser.write(bytearray([ord('1')]))
         else:
@@ -51,9 +51,9 @@ except Exception:
 client.loop_start()
 
 print('Subscribing')
-client.subscribe("lab/photo/stream" % my_id)
-client.subscribe("lab/photo/min" % my_id)
-client.subscribe("lab/photo/max" % my_id)
+client.subscribe("lab/sukmalo/photo/stream" % my_id)
+client.subscribe("lab/sukmalo/photo/min" % my_id)
+client.subscribe("lab/sukmalo/photo/max" % my_id)
 
 ser = get_connection('/dev/ttyUSB0')
 
