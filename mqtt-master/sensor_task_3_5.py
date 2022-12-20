@@ -3,7 +3,7 @@ import time
 import paho.mqtt.client as mqtt_client
 import serial
 
-my_id = 618
+my_id = 310
 
 interval = 100
 do_calibrate = True
@@ -37,14 +37,14 @@ while True:
         data = ser.read(1)
         if mn > data[0]:
             mn = data[0]
-        client.publish("lab/%s/photo/min" % my_id, mn)
+        client.publish("lab/photo/min" % my_id, mn)
         if mx < data[0]:
             mx = data[0]
-        client.publish("lab/%s/photo/max" % my_id, mx)
+        client.publish("lab/photo/max" % my_id, mx)
 
         print("Value: " + str(data[0]))
         print("min: " + str(mn) + ", max: " + str(mx))
-        client.publish("lab/%s/photo/stream" % my_id, data[0])
+        client.publish("lab/photo/stream" % my_id, data[0])
         ser.write(bytearray([int(ord("I")), int(interval)]))
         print("Interval: " + str(interval))
         if do_calibrate:
